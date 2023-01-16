@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Oswald", sans-serif;
+      }
+      .main {
+        height: 100vh;
+        width: 100%;
+        background: url("css/building1.jpg") center center;
+        background-size: cover;
+        /* background-repeat: no-repeat; */
+      }
+      .main .overlay {
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+      .main .overlay .container {
+        padding: 100px;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: 2rem;
+        align-items: center;
+        font-weight: 700;
+      }
+      .main .overlay .container .timer input,
+      .main .overlay .container .timer span {
+        height: 80px;
+        width: 60px;
+        border-radius: 5px;
+        margin: 0 5px 0 20px;
+        font-size: 40px;
+        font-weight: 900;
+        text-align: center;
+      }
+      .main .overlay .container .timer span {
+        font-size: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="overlay">
+        <div class="container">
+          <h1>We are Coming Soon</h1>
+          <h2 id="fixedDate">16 January 2023</h2>
+          <div class="timer">
+            <input type="text" name="days" id="days" value="0" readonly />
+            <label for="days">DAYS</label>
+            <span>:</span>
+            <input type="text" name="hours" id="hours" value="0" readonly />
+            <label for="hours">HOURS</label>
+            <span>:</span>
+            <input type="text" name="minutes" id="minutes" value="0" readonly />
+            <label for="minutes">MINUTES</label>
+            <span>:</span>
+            <input type="text" name="seconds" id="seconds" value="0" readonly />
+            <label for="seconds">SECONDS</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    const endDate = prompt("Enter your birthday"); //in format 23 March 2011 8:02 AM
+    // const endDate = "15 January 2023 7:32 PM";
+    const inputs = document.querySelectorAll("input");
+    document.getElementById("fixedDate").innerHTML = endDate;
+
+    const clock = () => {
+      const end = new Date(endDate);
+      const display = new Date();
+
+      const diff = (end - display) / 1000;
+
+      if (diff < 0) return;
+
+      inputs[0].value = Math.floor(diff / 3600 / 24);
+      inputs[1].value = Math.floor((diff / 3600) % 24);
+      inputs[2].value = Math.floor((diff / 60) % 60);
+      inputs[3].value = Math.floor(diff % 60);
+      // console.log(inputs[1].value);
+    };
+    clock();
+
+    setInterval(() => {
+      clock();
+    }, 1000);
+  </script>
+</html>
