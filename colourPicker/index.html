@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colour Picker</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap" rel="stylesheet">
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rowdies', cursive;
+        }
+        body{
+            background-color: black;
+            transition: 0.5s ease;
+        }
+        .main{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 30%;
+            margin: 20% auto 0;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .main p{
+            font-size: 40px;
+            font-weight: 800;
+        }
+        .main button{
+            margin-top: 20px;
+            background-color: aqua;
+            border: none;
+            height: 40px;
+            display: block;
+            width: 100%;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: large;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="main">
+        <p id="colorCode">#000</p>
+        <button id="btn">Click Here</button>
+    </div>
+
+</body>
+
+
+<script>
+    
+    const getColor = () => {
+        const randomNum = Math.floor(Math.random()*16777215);
+        // console.log(randomNum);
+        const randomCode = "#" + randomNum.toString(16);
+        // console.log(randomCode);
+        document.body.style.backgroundColor = randomCode;
+        document.getElementById("colorCode").innerHTML = randomCode;
+        
+        navigator.clipboard.writeText(randomCode);   //for copying color Code
+    }
+    document.getElementById('btn').addEventListener(
+        "click",
+        getColor
+    ) 
+
+</script>
+
+
+</html>
